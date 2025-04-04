@@ -1,5 +1,5 @@
 entrypoint = "index.js"
-modules = ["nodejs-22"]
+modules = ["nodejs-18_x", "nodejs-20"]
 hidden = [".config", "package-lock.json"]
 
 [gitHubImport]
@@ -10,5 +10,8 @@ channel = "stable-24_11"
 
 [deployment]
 run = ["node", "index.js"]
-deploymentTarget = "autoscale"
 ignorePorts = false
+
+[[ports]]
+localPort = 3000
+externalPort = 80
