@@ -101,13 +101,10 @@ client.login(process.env.DISCORD_TOKEN).catch((err) => {
   process.exit(1);
 });
 
-const express = require("express");
+const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  res.send("Bot is running!");
-});
+app.get('/', (req, res) => res.send('Hello from Render!'));
 
-app.listen(3000, () => {
-  console.log("🌐 Web server is running on port 3000!");
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
