@@ -105,10 +105,11 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => res.send('Hello from Render!'));
+app.get('/', (req, res) => res.send('Bot is alive!'));
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
+app.listen(PORT, () => {
+  console.log(`Keep-alive server running on port ${PORT}`);
+});
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 setInterval(() => {
