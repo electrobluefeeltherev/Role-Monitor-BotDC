@@ -47,8 +47,11 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
   console.log(`🟡 New Roles: ${newRoles.map((r) => r.name).join(", ") || "None"}`);
 
   const addedRole = newRoles.find((role) => !oldRoles.has(role.id));
-  let removedRole = oldRoles.find((role) => !newRoles.has(role.id));
-
+  let removedRole;
+const previous = roleData[newMember.id];
+if (previous && previous !== addedRole.name) {
+  removedRole = newRoles.find(role => role.name === previous);
+}
   if (addedRole) {
     console.log(`🔹 ${newMember.user.tag} got ${addedRole.name}`);
 
@@ -104,6 +107,9 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
     } catch (error) {
       console.error("⚠️ Error fetching log channel:", error);
     }
+    // 💾 Save the new role to roles.json
+roleData[newMember.id] = addedRole.name;
+fs.writeFileSync(roleDataPath, JSON.stringify(roleData, null, 2));
   }
 });
 
