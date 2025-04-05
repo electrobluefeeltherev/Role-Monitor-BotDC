@@ -108,3 +108,12 @@ const PORT = process.env.PORT || 3000;
 app.get('/', (req, res) => res.send('Hello from Render!'));
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
+setInterval(() => {
+  fetch('https://your-render-app.onrender.com/')
+    .then(() => console.log('Pinged self to stay awake'))
+    .catch((err) => console.error('Ping failed:', err));
+}, 5 * 60 * 1000); // every 5 minutes
+
