@@ -1,7 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-const
+const roleDataPath = path.join(__dirname, 'roles.json');
+
+// Load existing data or initialize empty object
+let roleData = {};
+if (fs.existsSync(roleDataPath)) {
+  roleData = JSON.parse(fs.readFileSync(roleDataPath));
+}
 
 const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
 
