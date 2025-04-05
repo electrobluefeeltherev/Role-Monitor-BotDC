@@ -1,3 +1,8 @@
+const fs = require('fs');
+const path = require('path');
+
+const
+
 const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
 
 const client = new Client({
